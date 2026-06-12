@@ -4,36 +4,111 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book a Session — My Little Dreamland</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
+    --cream: #FAF8F4;
     --white: #FFFFFF;
     --ink: #1A1714;
     --ink-soft: #6B6560;
-    --ink-faint: #C8C3BC;
-    --sage: #ffadad;         /* Hồng dâu */
-    --sage-light: #fff5f5;   
-    --sage-dark: #ff8fa3;    
+    --ink-faint: #EAE6E0;
+    --sage: #ffadad;         /* Màu hồng dâu pastel cho nút bấm */
+    --sage-light: #fff5f5;   /* Hồng nhạt khi hover */
+    --sage-dark: #ff8fa3;    /* Hồng đậm hơn khi chọn hẳn */
     --radius: 14px;
     --radius-sm: 8px;
   }
 
-  /* Nền bầu trời xanh dương pastel an toàn tuyệt đối */
+  /* Chuyển sang background Bầu trời Cầu vồng Pastel có mây và sparkle nhẹ nhàng */
   html, body {
-    background: #E3F2FD;
-    background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #E3F2FD 70%);
-    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #fefeff !important;
   }
 
+  /* Tạo dải cầu vồng ẩn dưới nền */
+  html::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, 
+      rgba(255,183,178,0.15) 0%, 
+      rgba(255,214,165,0.15) 20%, 
+      rgba(253,255,182,0.15) 40%, 
+      rgba(202,255,191,0.15) 60%, 
+      rgba(155,246,255,0.15) 80%, 
+      rgba(160,196,255,0.15) 100%
+    ) !important;
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  /* Tạo hiệu ứng mây mờ ảo trên cầu vồng */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 25%), 
+                      radial-gradient(circle at 90% 80%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 30%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Chuyển hoàn toàn font chữ về font hệ thống mặc định sạch sẽ (Font cũ từ đầu) */
   body {
-    font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 14px;
     color: var(--ink);
     min-height: 100vh;
     padding: 0 0 60px;
   }
+
+  /* Tiêu đề - Thêm hiệu ứng lấp lánh (Sparkle) nhẹ bằng Text Shadow */
+  .header-title, .card-title, .success-title {
+    font-family: inherit !important;
+    font-weight: 700;
+    color: var(--ink);
+    position: relative;
+  }
+  
+  .card-title, .success-title {
+    font-size: 20px !important;
+    text-shadow: 0 0 8px rgba(255,255,255,0.8), 2px 2px 0px rgba(255,255,255,0.5);
+  }
+
+  /* Cục số 1-2-3 màu Cầu Vồng Pastel xinh xắn */
+  .steps { display: flex; align-items: center; gap: 0; padding: 28px 0 24px; }
+  .step { display: flex; align-items: center; gap: 8px; flex: 1; }
+  .step-num {
+    font-family: inherit !important;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: bold; flex-shrink: 0;
+    border: 1.5px solid #ffcdb2 !important; /* Viền cam đào */
+    color: #ffb7b2 !important;
+    background: var(--white);
+  }
+  .step.active .step-num {
+    background: #ffb7b2 !important; /* Đang ở bước: Hồng cam đào ngọt */
+    border-color: #ffb7b2 !important;
+    color: white !important;
+    box-shadow: 0 0 8px rgba(255,183,178,0.5);
+  }
+  .step.done .step-num {
+    background: #b5e2fa !important; /* Hoàn thành đổi sang xanh ngọc pastel */
+    border-color: #b5e2fa !important;
+    color: #4A7259 !important;
+  }
+  .step.active .step-label { color: var(--ink) !important; font-weight: 700; }
+  .step-label { font-size: 12px; color: var(--ink-soft); }
+  .step-line { flex: 1; height: 2px; background: #ffcdb2; margin: 0 8px; max-width: 40px; }
 
   /* Header */
   .header {
@@ -45,133 +120,98 @@
     gap: 12px;
   }
   .header-logo {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #ffe3e8;
-    display: flex; align-items: center; justify-content: center; font-size: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--sage-light) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
   }
-  .header-title { font-size: 18px; font-weight: 700; color: var(--ink); }
-  .header-sub { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+  .header-sub { font-size: 11px; color: var(--ink-soft); margin-top: 1px; }
 
   /* Container */
-  .container { max-width: 560px; margin: 0 auto; padding: 0 20px; }
+  .container { max-width: 560px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
 
-  /* Steps indicator */
-  .steps { display: flex; align-items: center; gap: 0; padding: 28px 0 24px; }
-  .step { display: flex; align-items: center; gap: 8px; flex: 1; }
-  .step-num {
-    width: 26px; height: 26px; border-radius: 50%;
-    border: 1.5px solid #a0c4ff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700; color: #a0c4ff;
-    background: var(--white); transition: all 0.2s; flex-shrink: 0;
-  }
-  .step-label { font-size: 12px; color: var(--ink-soft); transition: color 0.2s; }
-  .step-line { flex: 1; height: 1.5px; background: #a0c4ff; margin: 0 8px; max-width: 40px; }
-  
-  .step.active .step-num { background: #a0c4ff; border-color: #a0c4ff; color: white; }
-  .step.active .step-label { color: var(--ink); font-weight: 700; }
-  .step.done .step-num { background: #caffbf; border-color: #caffbf; color: #4A7259; }
-
-  /* Cards */
+  /* Card trắng nổi bật trên nền bầu trời */
   .card {
-    background: var(--white); border-radius: var(--radius);
-    border: 1px solid #EAE6E0; padding: 24px; margin-bottom: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    background: var(--white) !important;
+    border-radius: var(--radius);
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.03);
   }
-  .card-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-  .card-sub { font-size: 13px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.5; }
+  .card-sub { font-size: 12px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.5; }
 
-  /* Date picker */
-  .date-input {
-    width: 100%; padding: 12px 16px; border: 1.5px solid var(--ink-faint);
-    border-radius: var(--radius-sm); font-family: inherit; font-size: 15px;
-    color: var(--ink); background: var(--white); cursor: pointer;
-    outline: none; transition: border-color 0.15s; appearance: none;
+  /* Các ô nhập liệu */
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .date-input, .field input, .field select {
+    width: 100%; padding: 12px 16px; border: 1.5px solid var(--ink-faint) !important;
+    border-radius: var(--radius-sm) !important; font-family: inherit !important; font-size: 14px; color: var(--ink);
+    background: var(--white); outline: none; transition: border-color 0.15s;
   }
-  .date-input:focus { border-color: var(--sage); }
+  .date-input:focus, .field input:focus, .field select:focus { border-color: #ffadad !important; }
+  .field input::placeholder { color: var(--ink-faint); }
 
-  /* Slot grid */
-  .slots-loading { text-align: center; padding: 32px; color: var(--ink-soft); font-size: 13px; }
+  /* Grid các nút chọn giờ màu hồng dâu */
   .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px; }
   .slot-btn {
-    padding: 12px 8px; border-radius: var(--radius-sm);
-    border: 1.5px solid var(--ink-faint); background: var(--white);
+    padding: 12px 8px; border-radius: var(--radius-sm); border: 1.5px solid var(--ink-faint) !important; background: var(--white);
     cursor: pointer; text-align: center; transition: all 0.15s; font-family: inherit;
   }
   .slot-time { font-size: 13px; font-weight: 700; color: var(--ink); display: block; }
   .slot-avail { font-size: 11px; margin-top: 3px; display: block; color: var(--ink-soft); }
   
-  .slot-btn.available { border-color: var(--sage); background: var(--sage-light); }
-  .slot-btn.available:hover { border-color: var(--sage-dark); background: #ffe3e8; }
-  .slot-btn.selected { border-color: var(--sage-dark); background: var(--sage); }
-  .slot-btn.selected .slot-time { color: white; }
-  .slot-btn.selected .slot-avail { color: rgba(255,255,255,0.9); }
+  .slot-btn.available { border-color: var(--sage) !important; background: #fff5f5 !important; }
+  .slot-btn.available:hover { background: #ffe3e8 !important; }
   
-  .slot-btn.almost { border-color: #ffd6a5; background: #fffdfa; }
-  .slot-btn.almost .slot-avail { color: #d35400; }
-  .slot-btn.full { border-color: var(--ink-faint); background: #F5F4F2; cursor: not-allowed; opacity: 0.6; }
-  .slot-btn.full .slot-time { color: var(--ink-soft); }
-  .slot-btn.full .slot-avail { color: var(--ink-faint); }
+  .slot-btn.selected {
+    border-color: var(--sage-dark) !important;
+    background: var(--sage) !important;
+  }
+  .slot-btn.selected .slot-time { color: white !important; }
+  .slot-btn.selected .slot-avail { color: rgba(255,255,255,0.9) !important; }
+  
+  .slot-btn.almost { border-color: #ffd6a5 !important; background: #fffdfa !important; }
+  .slot-btn.almost .slot-avail { color: #d35400 !important; }
+  
+  .slot-btn.full { border-color: var(--ink-faint) !important; background: #F5F4F2 !important; cursor: not-allowed; opacity: 0.5; }
+  .slot-btn.full .slot-time { color: var(--ink-soft) !important; }
+  .slot-btn.full .slot-avail { color: var(--ink-faint) !important; }
   .slot-btn.past { display: none; }
 
-  /* Form fields */
-  .field { margin-bottom: 16px; }
-  .field label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-  .field input, .field select {
-    width: 100%; padding: 12px 16px; border: 1.5px solid var(--ink-faint);
-    border-radius: var(--radius-sm); font-family: inherit; font-size: 15px;
-    color: var(--ink); background: var(--white); outline: none; transition: border-color 0.15s;
-  }
-  .field input:focus, .field select:focus { border-color: var(--sage); }
-  .field input::placeholder { color: var(--ink-faint); }
-
-  /* Selected slot summary */
-  .slot-summary {
-    background: #E8F0FE; border-radius: var(--radius-sm); padding: 12px 16px;
-    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
-  }
+  /* Tóm tắt thông tin đặt chỗ */
+  .slot-summary { background: #E8F0FE !important; border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
   .slot-summary-icon { font-size: 18px; }
-  .slot-summary-text { font-size: 13px; line-height: 1.4; }
-  .slot-summary-main { font-weight: 700; color: #0288d1; }
+  .slot-summary-text { font-size: 12px; line-height: 1.4; }
+  .slot-summary-main { font-weight: 700; color: #0288d1 !important; }
   .slot-summary-sub { color: var(--ink-soft); }
 
-  /* Buttons */
+  /* Nút bấm chính */
   .btn {
-    width: 100%; padding: 14px; border-radius: var(--radius-sm); border: none;
-    font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer;
+    width: 100%; padding: 14px; border-radius: var(--radius-sm); border: none; font-family: inherit; font-size: 14px; font-weight: bold; cursor: pointer;
     transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .btn-primary { background: #a0c4ff; color: white; }
-  .btn-primary:hover { background: #70a1ff; }
-  .btn-primary:disabled { background: var(--ink-faint); cursor: not-allowed; }
+  .btn-primary { background: #a0c4ff !important; color: white !important; box-shadow: 0 4px 10px rgba(160,196,255,0.3); }
+  .btn-primary:hover { background: #70a1ff !important; }
+  .btn-primary:disabled { background: var(--ink-faint) !important; color: var(--ink-soft) !important; cursor: not-allowed; box-shadow: none; }
   .btn-ghost { background: transparent; color: var(--ink-soft); border: 1px solid var(--ink-faint); margin-top: 10px; }
-  .btn-ghost:hover { background: var(--white); }
+  .btn-ghost:hover { background: var(--クリーム sữa) !important; }
 
-  /* Success state */
-  .success-card {
-    background: var(--white); border-radius: var(--radius); border: 1px solid #EAE6E0;
-    padding: 40px 24px; text-align: center; margin-top: 16px;
-  }
-  .success-icon {
-    width: 64px; height: 64px; border-radius: 50%; background: #E8F0FE;
-    display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px;
-  }
-  .success-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: #2c3e50; }
-  .success-sub { font-size: 14px; color: var(--ink-soft); line-height: 1.6; max-width: 320px; margin: 0 auto 24px; }
-  .booking-ref { background: #E8F0FE; border-radius: var(--radius-sm); padding: 12px 20px; display: inline-block; font-size: 13px; color: var(--ink-soft); }
-  .booking-ref strong { color: #0288d1; font-size: 16px; display: block; margin-top: 2px; }
+  /* Thành công */
+  .success-card { background: var(--white); border-radius: var(--radius); border: 1px solid #EAE6E0; padding: 40px 24px; text-align: center; margin-top: 16px; }
+  .success-icon { width: 64px; height: 64px; border-radius: 50%; background: #E8F0FE; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px; }
+  .success-sub { font-size: 13px; color: var(--ink-soft); line-height: 1.6; max-width: 320px; margin: 0 auto 24px; }
+  .booking-ref { background: #e8f0fe !important; border-radius: var(--radius-sm); padding: 12px 20px; display: inline-block; font-size: 12px; color: var(--ink-soft); }
+  .booking-ref strong { color: #0288d1 !important; font-size: 16px; display: block; margin-top: 2px; }
 
-  .error-msg {
-    background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius-sm);
-    padding: 12px 16px; font-size: 13px; color: #B91C1C; margin-bottom: 16px; display: none;
-  }
-
-  .spinner {
-    width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4);
-    border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite;
-  }
+  .slots-loading { text-align: center; padding: 32px; color: var(--ink-soft); font-size: 13px; }
+  .error-msg { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #B91C1C; margin-bottom: 16px; display: none; }
+  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   .screen { display: none; }
   .screen.active { display: block; }
   @media (max-width: 400px) { .slots-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -273,7 +313,7 @@
 </div>
 
 <script>
-  // Script gốc 100% không đụng tới một chữ nào
+  // Script gốc 100% không đụng tới một chữ nào nhen, bao chạy!
   const API_URL = "https://script.google.com/macros/s/AKfycbwd0Zs_ewx9LDmBT_WNpT4H07BODU4e7nrR0ZQJsJbLBnrwFaIrnLLDRrJ5uJl2p-MN7Q/exec";
   let selectedDate = null; let selectedSlot = null;
   const dateInput = document.getElementById('date-input');
