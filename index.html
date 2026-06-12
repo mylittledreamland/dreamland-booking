@@ -5,79 +5,73 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book a Session — My Little Dreamland</title>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #FAF8F4;       /* Đổi nền về màu kem sữa tinh tế, dịu mắt, hết chói 100% */
-    --white: #FFFFFF;
-    --ink: #1A1714;
-    --ink-soft: #6B6560;
-    --ink-faint: #EAE6E0;
-    
-    /* Bộ màu kẹo ngọt Pastel Cầu Vồng */
-    --sage: #ffadad;         /* Nền nút bấm giờ: Hồng pastel */
-    --sage-light: #ffe3e8;   /* Nền hồng siêu nhẹ khi hover */
-    --sage-dark: #ff8fa3;    /* Màu hồng đậm hơn tí khi chọn */
-    --blush: #ffd6a5;        /* Cam đào nhạt */
-    --radius: 14px;
-    --radius-sm: 8px;
+    --cream: #FAF8F4 !important;
+    --white: #FFFFFF !important;
+    --ink: #1A1714 !important;
+    --ink-soft: #6B6560 !important;
+    --ink-faint: #EAE6E0 !important;
+    --sage: #ffadad !important;
+    --sage-light: #ffe3e8 !important;
+    --sage-dark: #ff8fa3 !important;
+    --blush: #ffd6a5 !important;
+    --radius: 14px !important;
+    --radius-sm: 8px !important;
   }
 
-  html { background: var(--cream); }
+  html, body { 
+    background-color: #FAF8F4 !important; 
+  }
 
   body {
-    font-family: 'Comfortaa', 'Fredoka', sans-serif; /* Áp dụng font bo tròn cao cấp */
-    font-size: 14px;
-    color: var(--ink);
-    background: var(--cream);
+    font-family: 'Comfortaa', 'Fredoka', sans-serif !important;
+    font-size: 14px !important;
+    color: #1A1714 !important;
     min-height: 100vh;
     padding: 0 0 60px;
   }
 
-  /* Đổi toàn bộ font tiêu đề sang dạng Font trẻ em mập lùn siêu cưng */
   .header-title, .card-title, .success-title {
     font-family: 'Fredoka', sans-serif !important;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
   }
 
-  /* Mix bộ số 1-2-3 và đường nối sang màu Xanh Dương Pastel */
   .step .step-num {
     font-family: 'Fredoka', sans-serif !important;
-    border: 1.5px solid #bdb2ff !important; /* Viền tím xanh nhạt */
-    color: #a0c4ff !important;              /* Số màu xanh dương pastel */
-    background: var(--white) !important;
+    border: 1.5px solid #bdb2ff !important;
+    color: #a0c4ff !important;
+    background: #FFFFFF !important;
   }
   .step.active .step-num {
-    background: #a0c4ff !important;         /* Xanh dương khi active */
+    background: #a0c4ff !important;
     border-color: #a0c4ff !important;
     color: white !important;
   }
   .step.done .step-num {
-    background: #caffbf !important;         /* Khi hoàn thành đổi sang Xanh Lá pastel */
+    background: #caffbf !important;
     border-color: #caffbf !important;
     color: #4A7259 !important;
   }
   .step.active .step-label {
-    color: #a0c4ff !important;              /* Chữ bước active sang xanh dương */
-    font-weight: bold;
+    color: #a0c4ff !important;
+    font-weight: bold !important;
   }
   .step-line {
-    background: #bdb2ff !important;         /* Đường nối màu tím xanh nhạt */
+    background: #bdb2ff !important;
   }
 
-  /* Cải tiến: Đổi màu viền lịch picker sang màu vàng chanh pastel */
   .date-input:focus { 
-    border-color: #fdffb6 !important; 
-    box-shadow: 0 0 0 3px #fffde6 !important;
+    border-color: #ffd6a5 !important; 
+    box-shadow: 0 0 0 3px #fff1e0 !important;
   }
 
-  /* Header */
   .header {
-    background: var(--white);
-    border-bottom: 1px solid var(--ink-faint);
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #EAE6E0 !important;
     padding: 18px 24px;
     display: flex;
     align-items: center;
@@ -87,26 +81,24 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: var(--sage-light) !important;
+    background: #ffe3e8 !important;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
   }
   .header-sub {
-    font-size: 11px;
-    color: var(--ink-soft);
+    font-size: 11px !important;
+    color: #6B6560 !important;
     margin-top: 1px;
   }
 
-  /* Container */
   .container {
     max-width: 560px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  /* Steps indicator */
   .steps {
     display: flex;
     align-items: center;
@@ -121,189 +113,4 @@
   }
   .step-num {
     width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-  .step-label {
-    font-size: 11px;
-    color: var(--ink-soft);
-    transition: color 0.2s;
-  }
-  .step-line {
-    flex: 1;
-    height: 1px;
-    margin: 0 8px;
-    max-width: 40px;
-  }
-
-  /* Cards */
-  .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1px solid #EAE6E0;
-    padding: 24px;
-    margin-bottom: 16px;
-  }
-  .card-sub {
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-bottom: 20px;
-    line-height: 1.5;
-  }
-
-  /* Date picker */
-  .date-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid var(--ink-faint);
-    border-radius: var(--radius-sm);
-    font-family: inherit;
-    font-size: 14px;
-    color: var(--ink);
-    background: var(--white);
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.15s;
-    appearance: none;
-  }
-
-  /* Slot grid */
-  .slots-loading {
-    text-align: center;
-    padding: 32px;
-    color: var(--ink-soft);
-    font-size: 13px;
-  }
-  .slots-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 4px;
-  }
-  .slot-btn {
-    padding: 12px 8px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--ink-faint);
-    background: var(--white);
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.15s;
-    font-family: inherit;
-  }
-  .slot-time {
-    font-size: 13px;
-    font-weight: bold;
-    color: var(--ink);
-    display: block;
-  }
-  .slot-avail {
-    font-size: 11px;
-    margin-top: 3px;
-    display: block;
-    color: var(--ink-soft);
-  }
-  
-  /* Màu hồng Pastel cho nút còn chỗ */
-  .slot-btn.available {
-    border-color: #ffadad !important;
-    background: #fff5f5 !important;
-  }
-  .slot-btn.available:hover {
-    background: var(--sage-light) !important;
-  }
-  .slot-btn.available:hover .slot-time { color: var(--sage-dark) !important; }
-  
-  /* Khi được bấm chọn thành Hồng Đậm nổi bật */
-  .slot-btn.selected {
-    border-color: var(--sage-dark) !important;
-    background: var(--sage) !important;
-  }
-  .slot-btn.selected .slot-time { color: white !important; }
-  .slot-btn.selected .slot-avail { color: rgba(255,255,255,0.9) !important; }
-  
-  .slot-btn.almost {
-    border-color: #ffd6a5 !important;
-    background: #fffdfa !important;
-  }
-  .slot-btn.almost .slot-avail { color: #d35400 !important; }
-  
-  .slot-btn.full {
-    border-color: var(--ink-faint) !important;
-    background: #F5F4F2 !important;
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-  .slot-btn.full .slot-time { color: var(--ink-soft) !important; }
-  .slot-btn.full .slot-avail { color: var(--ink-faint) !important; }
-  .slot-btn.past { display: none; }
-
-  /* Form fields */
-  .field { margin-bottom: 16px; }
-  .field label {
-    display: block;
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .field input, .field select {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid var(--ink-faint);
-    border-radius: var(--radius-sm);
-    font-family: inherit;
-    font-size: 14px;
-    color: var(--ink);
-    background: var(--white);
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .field input:focus, .field select:focus { border-color: var(--sage) !important; }
-  .field input::placeholder { color: var(--ink-faint); }
-
-  /* Selected slot summary */
-  .slot-summary {
-    background: var(--sage-light) !important;
-    border-radius: var(--radius-sm);
-    padding: 12px 16px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .slot-summary-icon { font-size: 18px; }
-  .slot-summary-text { font-size: 12px; line-height: 1.4; }
-  .slot-summary-main { font-weight: bold; color: var(--sage-dark) !important; }
-  .slot-summary-sub { color: var(--ink-soft); }
-
-  /* Buttons */
-  .btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: var(--radius-sm);
-    border: none;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .btn-primary {
-    background: var(--sage) !important;
-    color: white !important;
-  }
-  .btn-primary:hover { background: var(--sage-dark) !important; }
-  .btn-primary:disabled {
-    background: var(--ink-faint) !important;
-    color:
+    height:
