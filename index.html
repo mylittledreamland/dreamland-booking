@@ -10,41 +10,49 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #fdffb6;       /* Nền vàng chanh pastel */
+    --cream: #FAF8F4;       /* Đổi nền về màu kem sữa tinh tế, dịu mắt, hết chói 100% */
     --white: #FFFFFF;
     --ink: #1A1714;
     --ink-soft: #6B6560;
     --ink-faint: #EAE6E0;
-    --sage: #ffadad;         /* Nền nút bấm giờ: Hồng pastel */
-    --sage-light: #ffe3e8;   /* Nền hồng siêu nhẹ khi hover */
-    --sage-dark: #ff8fa3;    /* Màu hồng đậm hơn tí khi chọn */
-    --blush: #ffd6a5;
+    
+    /* Bộ màu kẹo ngọt của cậu được phân bổ ở đây */
+    --sage: #ffadad;         /* Nút bấm trạng thái: Hồng pastel của cậu */
+    --sage-light: #fff0f0;   /* Hồng siêu nhẹ khi hover */
+    --sage-dark: #ff8fa3;    /* Hồng đậm hơn khi bấm chọn */
+    --blush: #ffd6a5;        /* Cam đào nhạt */
     --radius: 14px;
     --radius-sm: 8px;
   }
 
-  /* Đổi riêng cục số 1-2-3 và đường gạch nối sang màu xanh dương pastel */
+  /* Mix bộ số 1-2-3 và đường nối sang màu Xanh Dương Pastel theo ý cậu */
   .step .step-num {
-    border: 1.5px solid #bdb2ff; /* Viền tím xanh nhạt */
-    color: #a0c4ff;              /* Số màu xanh dương pastel */
+    border: 1.5px solid #bdb2ff; /* Viền tím pastel nhạt */
+    color: #a0c4ff;              /* Số màu xanh dương pastel của cậu */
     background: var(--white);
   }
   .step.active .step-num {
-    background: #a0c4ff !important;         /* Xanh dương khi active */
+    background: #a0c4ff !important; /* Xanh dương pastel khi đang ở bước đó */
     border-color: #a0c4ff !important;
     color: white !important;
   }
   .step.done .step-num {
-    background: #e8f0fe !important;         /* Xanh dương siêu nhạt khi hoàn thành */
-    border-color: #a0c4ff !important;
-    color: #a0c4ff !important;
+    background: #caffbf !important; /* Khi hoàn thành biến thành Xanh Lá pastel của cậu để báo hiệu "Done" */
+    border-color: #caffbf !important;
+    color: #4A7259 !important;
   }
   .step.active .step-label {
-    color: #a0c4ff !important;              /* Chữ bước active sang xanh dương */
+    color: #a0c4ff !important;      /* Chữ của bước active cũng sang xanh dương */
     font-weight: 600;
   }
   .step-line {
-    background: #bdb2ff !important;         /* Đường nối màu tím xanh nhạt */
+    background: #bdb2ff !important; /* Thanh nối màu tím pastel nhạt */
+  }
+
+  /* Cải tiến thêm: Đổi màu viền lịch Picker sang màu vàng chanh pastel của cậu cho đồng bộ */
+  .date-input:focus { 
+    border-color: #fdffb6 !important; 
+    box-shadow: 0 0 0 3px #fffde6;
   }
 
   html { background: var(--cream); }
