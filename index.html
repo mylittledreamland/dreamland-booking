@@ -260,13 +260,13 @@
 
 
 
-  /* CLOUDS ONLY — moving horizontally behind the booking form */
+  /* CLOUDS — visible soft layer, moving horizontally */
   .dream-clouds {
     position: fixed;
     inset: 0;
     pointer-events: none;
     overflow: hidden;
-    z-index: 1;
+    z-index: 4;
   }
   .header, .container {
     position: relative;
@@ -275,15 +275,15 @@
   .dream-cloud {
     position: absolute;
     left: 0;
-    width: 172px;
-    height: 54px;
-    background: rgba(255,255,255,0.99);
+    width: 168px;
+    height: 52px;
+    background: rgba(255,255,255,0.96);
     border-radius: 999px;
-    box-shadow: 0 10px 28px rgba(255,143,163,0.22), 0 0 0 1px rgba(255,255,255,0.75);
-    opacity: var(--opacity, 0.94);
+    box-shadow: 0 8px 22px rgba(255,143,163,0.16), 0 2px 10px rgba(255,255,255,0.55);
+    opacity: var(--opacity, 0.72);
     transform: translate3d(-260px, 0, 0) scale(var(--scale, 1));
     animation-name: cloudDrift;
-    animation-duration: var(--duration, 38s);
+    animation-duration: var(--duration, 42s);
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-delay: var(--delay, 0s);
@@ -293,49 +293,253 @@
   .dream-cloud::after {
     content: "";
     position: absolute;
-    background: rgba(255,255,255,1);
+    background: rgba(255,255,255,0.98);
     border-radius: 50%;
   }
   .dream-cloud::before {
-    width: 74px;
-    height: 74px;
+    width: 72px;
+    height: 72px;
     left: 28px;
     top: -34px;
   }
   .dream-cloud::after {
-    width: 92px;
-    height: 92px;
+    width: 90px;
+    height: 90px;
     right: 22px;
-    top: -50px;
+    top: -48px;
   }
-  .dream-cloud.c1 { top: 92px;  --scale: 0.78; --opacity: 1; --duration: 36s; --delay: -14s; }
-  .dream-cloud.c2 { top: 168px; --scale: 0.62; --opacity: 0.96; --duration: 44s; --delay: -28s; }
-  .dream-cloud.c3 { top: 310px; --scale: 0.95; --opacity: 0.94; --duration: 52s; --delay: -6s; }
-  .dream-cloud.c4 { top: 500px; --scale: 0.86; --opacity: 0.92; --duration: 48s; --delay: -34s; }
-  .dream-cloud.c5 { top: 700px; --scale: 0.72; --opacity: 0.90; --duration: 58s; --delay: -20s; }
-  .dream-cloud.c6 { top: 880px; --scale: 1.02; --opacity: 0.88; --duration: 64s; --delay: -42s; }
 
-  .dream-cloud.c7 { top: 245px; --scale: 0.70; --opacity: 0.92; --duration: 46s; --delay: -10s; }
-  .dream-cloud.c8 { top: 420px; --scale: 0.55; --opacity: 0.88; --duration: 54s; --delay: -32s; }
-  .dream-cloud.c9 { top: 610px; --scale: 0.90; --opacity: 0.90; --duration: 62s; --delay: -18s; }
-  .dream-cloud.c10 { top: 790px; --scale: 0.64; --opacity: 0.86; --duration: 70s; --delay: -48s; }
+  /* More clouds, staggered so several are visible immediately */
+  .dream-cloud.c1  { top: 86px;  --scale: 0.72; --opacity: 0.76; --duration: 38s; --delay: -5s; }
+  .dream-cloud.c2  { top: 142px; --scale: 0.52; --opacity: 0.66; --duration: 46s; --delay: -24s; }
+  .dream-cloud.c3  { top: 220px; --scale: 0.84; --opacity: 0.70; --duration: 54s; --delay: -36s; }
+  .dream-cloud.c4  { top: 318px; --scale: 0.62; --opacity: 0.68; --duration: 48s; --delay: -12s; }
+  .dream-cloud.c5  { top: 410px; --scale: 0.92; --opacity: 0.64; --duration: 60s; --delay: -44s; }
+  .dream-cloud.c6  { top: 520px; --scale: 0.74; --opacity: 0.62; --duration: 58s; --delay: -28s; }
+  .dream-cloud.c7  { top: 630px; --scale: 0.56; --opacity: 0.60; --duration: 52s; --delay: -40s; }
+  .dream-cloud.c8  { top: 740px; --scale: 0.86; --opacity: 0.58; --duration: 66s; --delay: -16s; }
+  .dream-cloud.c9  { top: 850px; --scale: 0.66; --opacity: 0.58; --duration: 70s; --delay: -52s; }
+  .dream-cloud.c10 { top: 960px; --scale: 0.95; --opacity: 0.56; --duration: 76s; --delay: -34s; }
+  .dream-cloud.c11 { top: 182px; --scale: 0.44; --opacity: 0.62; --duration: 40s; --delay: -32s; }
+  .dream-cloud.c12 { top: 470px; --scale: 0.50; --opacity: 0.60; --duration: 44s; --delay: -20s; }
+  .dream-cloud.c13 { top: 690px; --scale: 0.48; --opacity: 0.56; --duration: 50s; --delay: -8s; }
+  .dream-cloud.c14 { top: 1040px; --scale: 0.68; --opacity: 0.54; --duration: 68s; --delay: -48s; }
+
   @keyframes cloudDrift {
-    0%   { transform: translate3d(-280px, 0, 0) scale(var(--scale, 1)); }
-    100% { transform: translate3d(calc(100vw + 280px), 0, 0) scale(var(--scale, 1)); }
+    0%   { transform: translate3d(-300px, 0, 0) scale(var(--scale, 1)); }
+    100% { transform: translate3d(calc(100vw + 300px), 0, 0) scale(var(--scale, 1)); }
+  }
+
+  @media (max-width: 520px) {
+    .dream-cloud { width: 128px; height: 40px; opacity: calc(var(--opacity, 0.72) + 0.06); }
+    .dream-cloud::before { width: 54px; height: 54px; left: 22px; top: -25px; }
+    .dream-cloud::after { width: 68px; height: 68px; right: 16px; top: -37px; }
+    .dream-cloud.c1  { top: 82px; }
+    .dream-cloud.c2  { top: 150px; }
+    .dream-cloud.c3  { top: 235px; }
+    .dream-cloud.c4  { top: 330px; }
+    .dream-cloud.c5  { top: 430px; }
+    .dream-cloud.c6  { top: 545px; }
+    .dream-cloud.c7  { top: 660px; }
+    .dream-cloud.c8  { top: 780px; }
+    .dream-cloud.c9  { top: 900px; }
+    .dream-cloud.c10 { top: 1020px; }
+    .dream-cloud.c11 { top: 195px; }
+    .dream-cloud.c12 { top: 495px; }
+    .dream-cloud.c13 { top: 720px; }
+    .dream-cloud.c14 { top: 1120px; }
+  }
+
+
+  /* TICKET ESTIMATE STEP */
+  .ticket-note {
+    background: #fff5f5;
+    border: 1px solid #ffe3e8;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .ticket-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 18px 0 10px;
+  }
+  .ticket-type-grid {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .ticket-radio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border: 1.5px solid #EAE6E0;
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    padding: 13px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ticket-radio-card:hover {
+    border-color: #ffadad;
+    background: #fff5f5;
+  }
+  .ticket-radio-card input[type="radio"] {
+    accent-color: #ffadad;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .ticket-radio-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .ticket-radio-sub {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .ticket-panel {
+    display: none;
+    background: #FAFAF9;
+    border: 1px solid #EAE6E0;
+    border-radius: var(--radius-sm);
+    padding: 15px;
+    margin-bottom: 14px;
+  }
+  .ticket-panel.active { display: block; }
+  .ticket-control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ticket-mini-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .ticket-select,
+  .ticket-panel select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid #C8C3BC;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    background: #ffffff;
+    color: var(--ink);
+    outline: none;
+  }
+  .ticket-session-options {
+    display: grid;
+    gap: 8px;
+  }
+  .ticket-session-options label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #EAE6E0;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .ticket-session-options input[type="radio"] { accent-color: #ffadad; }
+  .ticket-price-tag {
+    font-weight: 700;
+    color: #ff8fa3;
+    white-space: nowrap;
+  }
+  .ticket-addon-row {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #EAE6E0;
+  }
+  .ticket-addon-row:last-child { border-bottom: none; }
+  .ticket-addon-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .ticket-addon-sub {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+  .ticket-total-card {
+    background: #fff5f5;
+    border: 1.5px solid #ffadad;
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-top: 18px;
+  }
+  .ticket-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 7px;
+  }
+  .ticket-breakdown-row strong { color: var(--ink); }
+  .ticket-total-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ffe3e8;
+    padding-top: 12px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .ticket-total-amount {
+    font-size: 20px;
+    color: #ff8fa3;
+    white-space: nowrap;
+  }
+  .estimate-ack {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #EAE6E0;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-top: 14px;
+  }
+  .estimate-ack input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: #ffadad;
+    flex-shrink: 0;
+  }
+  .estimate-ack label {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.45;
+    cursor: pointer;
   }
   @media (max-width: 520px) {
-    .dream-cloud { width: 132px; height: 42px; }
-    .dream-cloud::before { width: 56px; height: 56px; left: 22px; top: -26px; }
-    .dream-cloud::after { width: 70px; height: 70px; right: 18px; top: -38px; }
-    .dream-cloud.c1 { top: 86px; }
-    .dream-cloud.c2 { top: 190px; }
-    .dream-cloud.c3 { top: 365px; }
-    .dream-cloud.c4 { top: 555px; }
-    .dream-cloud.c5 { top: 780px; }
-    .dream-cloud.c7 { top: 280px; }
-    .dream-cloud.c8 { top: 455px; }
-    .dream-cloud.c9 { top: 665px; }
-    .dream-cloud.c10 { top: 900px; }
+    .step-label { display: none; }
+    .step-line { margin: 0 4px; min-width: 18px; }
+    .ticket-control-grid { grid-template-columns: 1fr; }
+    .ticket-addon-row { grid-template-columns: 1fr 92px; }
+    .ticket-total-line { align-items: flex-start; flex-direction: column; gap: 4px; }
   }
 
 </style>
@@ -352,6 +556,10 @@
   <div class="dream-cloud c8"></div>
   <div class="dream-cloud c9"></div>
   <div class="dream-cloud c10"></div>
+  <div class="dream-cloud c11"></div>
+  <div class="dream-cloud c12"></div>
+  <div class="dream-cloud c13"></div>
+  <div class="dream-cloud c14"></div>
 </div>
 
 
@@ -369,9 +577,11 @@
     <div class="step-line"></div>
     <div class="step" id="step2"><div class="step-num">2</div><span class="step-label">Your details</span></div>
     <div class="step-line"></div>
-    <div class="step" id="step3"><div class="step-num">3</div><span class="step-label">Waiver</span></div>
+    <div class="step" id="step3"><div class="step-num">3</div><span class="step-label">Tickets</span></div>
     <div class="step-line"></div>
-    <div class="step" id="step4"><div class="step-num">4</div><span class="step-label">Confirmed</span></div>
+    <div class="step" id="step4"><div class="step-num">4</div><span class="step-label">Waiver</span></div>
+    <div class="step-line"></div>
+    <div class="step" id="step5"><div class="step-num">5</div><span class="step-label">Confirmed</span></div>
   </div>
 
   <div class="screen active" id="screen-1">
@@ -414,11 +624,154 @@
         </select>
       </div>
     </div>
-    <button class="btn btn-primary" id="btn-next-2">Continue to waiver</button>
+    <button class="btn btn-primary" id="btn-next-2">Continue to tickets</button>
     <button class="btn btn-ghost" id="btn-back-1">← Back</button>
   </div>
 
   <div class="screen" id="screen-3">
+    <div class="card">
+      <div class="card-title">Tickets & estimated total</div>
+      <div class="card-sub">Choose the ticket option that best suits your visit. This estimate helps your team prepare, and the final total can still be confirmed at check-in.</div>
+
+      <div class="slot-summary">
+        <div class="slot-summary-row"><span class="slot-summary-label">Date</span><span class="slot-summary-val" id="ticket-sum-date"></span></div>
+        <div class="slot-summary-row"><span class="slot-summary-label">Entry</span><span class="slot-summary-val" id="ticket-sum-entry"></span></div>
+        <div class="slot-summary-row"><span class="slot-summary-label">Session ends</span><span class="slot-summary-val" id="ticket-sum-exit"></span></div>
+        <div class="slot-summary-row"><span class="slot-summary-label">Children</span><span class="slot-summary-val" id="ticket-capacity-count"></span></div>
+      </div>
+
+      <div class="ticket-note">
+        Prices are in AUD and may change. This is an estimated total only. Final payment can be confirmed when you book or arrive.
+      </div>
+
+      <div class="error-msg" id="error-msg-ticket"></div>
+
+      <div class="ticket-section-title">Main ticket type</div>
+      <div class="ticket-type-grid">
+        <label class="ticket-radio-card">
+          <input type="radio" name="ticket-type" value="baby">
+          <div>
+            <div class="ticket-radio-title">Baby ticket</div>
+            <div class="ticket-radio-sub">Age 0–1. Day pass is $3.50, or free when attending with another paid child ticket.</div>
+          </div>
+        </label>
+        <label class="ticket-radio-card">
+          <input type="radio" name="ticket-type" value="standard" checked>
+          <div>
+            <div class="ticket-radio-title">Standard ticket</div>
+            <div class="ticket-radio-sub">Age 1–10. Choose 1 hour, 2 hours, or all day.</div>
+          </div>
+        </label>
+        <label class="ticket-radio-card">
+          <input type="radio" name="ticket-type" value="family">
+          <div>
+            <div class="ticket-radio-title">Family pass</div>
+            <div class="ticket-radio-sub">For 2 or 3 children aged 1–10. Covers 1 supervising adult.</div>
+          </div>
+        </label>
+      </div>
+
+      <div class="ticket-panel" id="ticket-panel-baby">
+        <div class="ticket-control-grid">
+          <div>
+            <label class="ticket-mini-label">Number of babies</label>
+            <select id="baby-qty" class="ticket-select">
+              <option value="1">1 baby</option><option value="2">2 babies</option><option value="3">3 babies</option><option value="4">4 babies</option><option value="5">5 babies</option>
+            </select>
+          </div>
+          <div>
+            <label class="ticket-mini-label">Baby pricing</label>
+            <div class="ticket-session-options">
+              <label><span><input type="radio" name="baby-mode" value="paid" checked> Standalone baby day pass</span><span class="ticket-price-tag">$3.50</span></label>
+              <label><span><input type="radio" name="baby-mode" value="free"> With another paid child ticket</span><span class="ticket-price-tag">Free</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticket-panel active" id="ticket-panel-standard">
+        <div class="ticket-control-grid">
+          <div>
+            <label class="ticket-mini-label">Number of standard children</label>
+            <select id="standard-qty" class="ticket-select">
+              <option value="1">1 child</option><option value="2">2 children</option><option value="3">3 children</option><option value="4">4 children</option><option value="5">5 children</option>
+            </select>
+          </div>
+          <div>
+            <label class="ticket-mini-label">Session length</label>
+            <div class="ticket-session-options">
+              <label><span><input type="radio" name="standard-session" value="one" checked> 1 hour</span><span class="ticket-price-tag">$15.80 each</span></label>
+              <label><span><input type="radio" name="standard-session" value="two"> 2 hours</span><span class="ticket-price-tag">$25.80 each</span></label>
+              <label><span><input type="radio" name="standard-session" value="all"> All day</span><span class="ticket-price-tag">$29.80 each</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticket-panel" id="ticket-panel-family">
+        <div class="ticket-control-grid">
+          <div>
+            <label class="ticket-mini-label">Family pass size</label>
+            <select id="family-size" class="ticket-select">
+              <option value="two">1 adult + 2 kids</option>
+              <option value="three">1 adult + 3 kids</option>
+            </select>
+          </div>
+          <div>
+            <label class="ticket-mini-label">Session length</label>
+            <div class="ticket-session-options">
+              <label><span><input type="radio" name="family-session" value="one" checked> 1 hour</span><span class="ticket-price-tag" id="family-price-one">$28.40</span></label>
+              <label><span><input type="radio" name="family-session" value="two"> 2 hours</span><span class="ticket-price-tag" id="family-price-two">$47.40</span></label>
+              <label><span><input type="radio" name="family-session" value="all"> All day</span><span class="ticket-price-tag" id="family-price-all">$55.40</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-note" style="margin:14px 0 0;">Family pass includes one supervising adult. Café combo limit: one drink offer per family pass.</div>
+      </div>
+
+      <div class="ticket-section-title">Add-ons</div>
+      <div class="ticket-panel active">
+        <div class="ticket-addon-row">
+          <div><div class="ticket-addon-title">Baby add-on</div><div class="ticket-addon-sub">Age 0–1 with another paid child ticket.</div></div>
+          <select id="addon-babies" class="ticket-select"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+        </div>
+        <div class="ticket-addon-row">
+          <div><div class="ticket-addon-title">Older kids</div><div class="ticket-addon-sub">Age 10–12, $12.80 each, when with another paid child ticket.</div></div>
+          <select id="addon-older" class="ticket-select"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+        </div>
+        <div class="ticket-addon-row">
+          <div><div class="ticket-addon-title">Extra adults</div><div class="ticket-addon-sub">Guests over 12, $3.80 each.</div></div>
+          <select id="addon-adults" class="ticket-select"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+        </div>
+      </div>
+
+      <div class="ticket-section-title">Café combo deals</div>
+      <div class="ticket-panel active">
+        <div class="ticket-addon-row">
+          <div><div class="ticket-addon-title">Medium hot drink</div><div class="ticket-addon-sub">$2.00 with each eligible ticket purchase.</div></div>
+          <select id="drink-medium" class="ticket-select"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+        </div>
+        <div class="ticket-addon-row">
+          <div><div class="ticket-addon-title">Large hot drink / iced drink</div><div class="ticket-addon-sub">$3.00 with each eligible ticket purchase.</div></div>
+          <select id="drink-large" class="ticket-select"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+        </div>
+      </div>
+
+      <div class="ticket-total-card">
+        <div id="ticket-breakdown"></div>
+        <div class="ticket-total-line"><span>Estimated total</span><span class="ticket-total-amount" id="ticket-total">$0.00 AUD</span></div>
+      </div>
+
+      <div class="estimate-ack">
+        <input type="checkbox" id="estimate-ack">
+        <label for="estimate-ack">I understand this is an estimated total only and the final amount will be confirmed at check-in or payment.</label>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="btn-next-3">Continue to waiver</button>
+    <button class="btn btn-ghost" id="btn-back-2">← Back</button>
+  </div>
+
+  <div class="screen" id="screen-4">
     <div class="card">
       <div class="card-title">Liability Waiver & Details</div>
       <div class="card-sub">Please provide details for the children and read the policies below.</div>
@@ -476,10 +829,10 @@
       <div class="error-msg" id="error-msg-3" style="margin-top:16px;"></div>
     </div>
     <button class="btn btn-primary" id="btn-submit" disabled>Complete booking</button>
-    <button class="btn btn-ghost" id="btn-back-2">← Back</button>
+    <button class="btn btn-ghost" id="btn-back-3">← Back</button>
   </div>
 
-  <div class="screen" id="screen-4">
+  <div class="screen" id="screen-5">
     <div class="success-card">
       <div class="success-icon">🎉</div>
       <div class="success-title">You're all booked!</div>
@@ -603,19 +956,204 @@
     const children = document.getElementById('f-children').value;
     const errEl = document.getElementById('error-msg-2');
     errEl.style.display = 'none';
-    
-    if (!name || !email || !phone || !children) { errEl.textContent = 'Please fill in all contact fields.'; errEl.style.display = 'block'; return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; return; }
-    
-    const num = parseInt(children);
-    for(let i = 1; i <= 5; i++) {
-        document.getElementById(`child-group-${i}`).style.display = i <= num ? 'block' : 'none';
+
+    if (!name || !email || !phone || !children) {
+      errEl.textContent = 'Please fill in all contact fields.';
+      errEl.style.display = 'block';
+      return;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    updateTicketSummaryFromBooking();
+    syncTicketDefaultsFromDetails();
+    updateTicketEstimate();
     goToScreen(3);
+  });
+
+  document.getElementById('btn-next-3').addEventListener('click', () => {
+    const errEl = document.getElementById('error-msg-ticket');
+    errEl.style.display = 'none';
+
+    if (!document.getElementById('estimate-ack').checked) {
+      errEl.textContent = 'Please acknowledge that this is an estimated total before continuing.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    const num = parseInt(document.getElementById('f-children').value, 10);
+    for (let i = 1; i <= 5; i++) {
+      document.getElementById(`child-group-${i}`).style.display = i <= num ? 'block' : 'none';
+    }
+
+    goToScreen(4);
   });
 
   document.getElementById('btn-back-1').addEventListener('click', () => goToScreen(1));
   document.getElementById('btn-back-2').addEventListener('click', () => goToScreen(2));
+  document.getElementById('btn-back-3').addEventListener('click', () => goToScreen(3));
+
+
+  const TICKET_PRICES = {
+    baby: 3.50,
+    standard: { one: 15.80, two: 25.80, all: 29.80 },
+    family: {
+      two: { one: 28.40, two: 47.40, all: 55.40 },
+      three: { one: 41.20, two: 68.20, all: 80.20 }
+    },
+    older: 12.80,
+    adult: 3.80,
+    mediumDrink: 2.00,
+    largeDrink: 3.00
+  };
+
+  function money(amount) {
+    return '$' + Number(amount || 0).toFixed(2) + ' AUD';
+  }
+
+  function getQty(id) {
+    const el = document.getElementById(id);
+    return el ? (parseInt(el.value, 10) || 0) : 0;
+  }
+
+  function getRadioValue(name) {
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return checked ? checked.value : '';
+  }
+
+  function updateTicketSummaryFromBooking() {
+    const d = new Date(selectedDate + 'T00:00:00');
+    document.getElementById('ticket-sum-date').textContent = d.toLocaleDateString('en-AU', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    document.getElementById('ticket-sum-entry').textContent = selectedSlot ? selectedSlot.start : '';
+    document.getElementById('ticket-sum-exit').textContent = selectedSlot ? selectedSlot.end : '';
+    const children = document.getElementById('f-children').value || '0';
+    document.getElementById('ticket-capacity-count').textContent = children === '5' ? '5+ children for capacity' : children + ' child' + (children === '1' ? '' : 'ren') + ' for capacity';
+  }
+
+  function syncTicketDefaultsFromDetails() {
+    const children = parseInt(document.getElementById('f-children').value, 10) || 1;
+    const standardQty = document.getElementById('standard-qty');
+    if (standardQty && getRadioValue('ticket-type') === 'standard') {
+      standardQty.value = String(Math.min(Math.max(children, 1), 5));
+    }
+  }
+
+  function updateFamilyPriceLabels() {
+    const size = document.getElementById('family-size').value;
+    document.getElementById('family-price-one').textContent = money(TICKET_PRICES.family[size].one).replace(' AUD', '');
+    document.getElementById('family-price-two').textContent = money(TICKET_PRICES.family[size].two).replace(' AUD', '');
+    document.getElementById('family-price-all').textContent = money(TICKET_PRICES.family[size].all).replace(' AUD', '');
+  }
+
+  function updateTicketVisibility() {
+    const type = getRadioValue('ticket-type') || 'standard';
+    ['baby', 'standard', 'family'].forEach(typeName => {
+      const panel = document.getElementById(`ticket-panel-${typeName}`);
+      if (panel) panel.classList.toggle('active', typeName === type);
+    });
+    updateFamilyPriceLabels();
+    updateTicketEstimate();
+  }
+
+  function getTicketEstimate() {
+    const type = getRadioValue('ticket-type') || 'standard';
+    const lines = [];
+    let total = 0;
+
+    if (type === 'baby') {
+      const qty = getQty('baby-qty');
+      const mode = getRadioValue('baby-mode') || 'paid';
+      const amount = mode === 'free' ? 0 : qty * TICKET_PRICES.baby;
+      total += amount;
+      lines.push({ label: qty + ' baby ticket' + (qty > 1 ? 's' : '') + (mode === 'free' ? ' with paid child ticket' : ' day pass'), amount });
+    }
+
+    if (type === 'standard') {
+      const qty = getQty('standard-qty');
+      const session = getRadioValue('standard-session') || 'one';
+      const sessionLabel = session === 'one' ? '1 hour' : session === 'two' ? '2 hours' : 'All day';
+      const amount = qty * TICKET_PRICES.standard[session];
+      total += amount;
+      lines.push({ label: qty + ' standard child ticket' + (qty > 1 ? 's' : '') + ' — ' + sessionLabel, amount });
+    }
+
+    if (type === 'family') {
+      const size = document.getElementById('family-size').value;
+      const session = getRadioValue('family-session') || 'one';
+      const sessionLabel = session === 'one' ? '1 hour' : session === 'two' ? '2 hours' : 'All day';
+      const kidsLabel = size === 'two' ? '1 adult + 2 kids' : '1 adult + 3 kids';
+      const amount = TICKET_PRICES.family[size][session];
+      total += amount;
+      lines.push({ label: 'Family pass — ' + kidsLabel + ' — ' + sessionLabel, amount });
+    }
+
+    const babyAddons = getQty('addon-babies');
+    if (babyAddons > 0) lines.push({ label: babyAddons + ' baby add-on' + (babyAddons > 1 ? 's' : '') + ' with paid ticket', amount: 0 });
+
+    const older = getQty('addon-older');
+    if (older > 0) {
+      const amount = older * TICKET_PRICES.older;
+      total += amount;
+      lines.push({ label: older + ' older kid add-on' + (older > 1 ? 's' : ''), amount });
+    }
+
+    const adults = getQty('addon-adults');
+    if (adults > 0) {
+      const amount = adults * TICKET_PRICES.adult;
+      total += amount;
+      lines.push({ label: adults + ' extra adult' + (adults > 1 ? 's' : ''), amount });
+    }
+
+    const medium = getQty('drink-medium');
+    if (medium > 0) {
+      const amount = medium * TICKET_PRICES.mediumDrink;
+      total += amount;
+      lines.push({ label: medium + ' medium hot drink combo' + (medium > 1 ? 's' : ''), amount });
+    }
+
+    const large = getQty('drink-large');
+    if (large > 0) {
+      const amount = large * TICKET_PRICES.largeDrink;
+      total += amount;
+      lines.push({ label: large + ' large hot / iced drink combo' + (large > 1 ? 's' : ''), amount });
+    }
+
+    if (lines.length === 0) lines.push({ label: 'No ticket selected', amount: 0 });
+
+    const notes = lines.map(line => line.label + ': ' + money(line.amount)).join(' | ') + ' | Estimated total: ' + money(total);
+    return { total, lines, notes };
+  }
+
+  function updateTicketEstimate() {
+    const estimate = getTicketEstimate();
+    const breakdown = document.getElementById('ticket-breakdown');
+    if (!breakdown) return;
+
+    breakdown.innerHTML = estimate.lines.map(line => {
+      return `<div class="ticket-breakdown-row"><span>${line.label}</span><strong>${money(line.amount)}</strong></div>`;
+    }).join('');
+
+    document.getElementById('ticket-total').textContent = money(estimate.total);
+  }
+
+  function initTicketCalculator() {
+    document.querySelectorAll('input[name="ticket-type"], input[name="baby-mode"], input[name="standard-session"], input[name="family-session"]').forEach(el => {
+      el.addEventListener('change', updateTicketVisibility);
+    });
+
+    ['baby-qty', 'standard-qty', 'family-size', 'addon-babies', 'addon-older', 'addon-adults', 'drink-medium', 'drink-large'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('change', updateTicketEstimate);
+    });
+
+    const familySize = document.getElementById('family-size');
+    if (familySize) familySize.addEventListener('change', updateFamilyPriceLabels);
+
+    updateTicketVisibility();
+  }
 
   function updateWaiverBtn() {
     const allChecked = ['w1','w2','w3','w4','w5','w6','w7','w-final'].every(id => document.getElementById(id).checked);
@@ -639,7 +1177,8 @@
     const email = document.getElementById('f-email').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
     const photoConsent = document.querySelector('input[name="photo"]:checked').value;
-    const compiledNotes = childNotesArr.join(" | ");
+    const ticketEstimate = getTicketEstimate();
+    const compiledNotes = childNotesArr.join(" | ") + " || Ticket estimate: " + ticketEstimate.notes;
 
     const btn = document.getElementById('btn-submit'); btn.disabled = true; btn.innerHTML = '<div class="spinner"></div> Confirming...';
 
@@ -654,7 +1193,7 @@
       const data = await res.json();
       
       if (data.success) {
-        document.getElementById('booking-id').textContent = data.bookingId; goToScreen(4);
+        document.getElementById('booking-id').textContent = data.bookingId; goToScreen(5);
       } else {
         errEl.textContent = data.error || 'Something went wrong.'; errEl.style.display = 'block'; btn.innerHTML = 'Complete booking'; updateWaiverBtn();
       }
@@ -665,7 +1204,7 @@
 
   function goToScreen(n) {
     document.querySelectorAll('.screen').forEach((s, i) => s.classList.toggle('active', i+1 === n));
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 5; i++) {
       const el = document.getElementById(`step${i}`); el.classList.remove('active','done');
       if (i < n) el.classList.add('done'); else if (i === n) el.classList.add('active');
     }
@@ -680,9 +1219,23 @@
     ['w1','w2','w3','w4','w5','w6','w7','w-final'].forEach(id => document.getElementById(id).checked = false);
     document.querySelectorAll('input[name="photo"]').forEach(r => r.checked = false);
     document.getElementById('btn-next-1').disabled = true; document.getElementById('btn-submit').disabled = true;
+    document.getElementById('estimate-ack').checked = false;
+    document.querySelector('input[name="ticket-type"][value="standard"]').checked = true;
+    document.querySelector('input[name="standard-session"][value="one"]').checked = true;
+    document.querySelector('input[name="baby-mode"][value="paid"]').checked = true;
+    document.querySelector('input[name="family-session"][value="one"]').checked = true;
+    ['baby-qty','standard-qty','family-size','addon-babies','addon-older','addon-adults','drink-medium','drink-large'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (id === 'baby-qty' || id === 'standard-qty') el.value = '1';
+      else if (id === 'family-size') el.value = 'two';
+      else el.value = '0';
+    });
+    updateTicketVisibility();
     dateInput.value = todayStr; loadSlots(todayStr); goToScreen(1);
   }
 
+  initTicketCalculator();
   loadSlots(todayStr);
 </script>
 </body>
